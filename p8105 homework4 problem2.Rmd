@@ -21,7 +21,7 @@ In Problems 1 and 2, I worked with Yulan Zhang (UNI: yz3306).
 ### Problem 2
 
 combine pol and gdp dataset
-```{r problem 2 data, warning=FALSE}
+```{r problem 2 data, warning=FALSE, message = F}
 pols_month_data = read_csv("../p8105-homework4-question2/fivethirtyeight_datasets/pols-month.csv") %>%
   clean_names() %>%
   mutate(mon = lubridate::floor_date((mon), unit = "month"))
@@ -31,4 +31,28 @@ gdp_data = read_csv("../p8105-homework4-question2/fivethirtyeight_datasets/gdp.c
 
 pols_gdp = merge(pols_month_data, gdp_data, by.x = "mon", by.y = "date") 
   
+```
+
+```{r load tidy 538, fig.width= 10, fig.height= 5, warning = F, message = F}
+
+library(ggplot2)
+library(stringr)
+
+pols_gdp %>%
+  mutate(
+    president = recode(prez_dem, "0" = "Republican", "1" = "Democratic"),
+    gdp = as.numeric(value),
+    date = str_sub(mon, 1, -7)
+    ) %>%
+  ggplot(aes(x = date, y = gdp, color = president)) +
+  geom_point() +
+  scale_x_discrete(breaks = seq(1948, 2015, 4)) +
+  scale_y_continuous() +
+  labs(
+    title = "GDP From 1947 to 2015",
+    x = "Time (Years)",
+    y = "GDP (%)",
+    caption = "GDP Value Over Time for Different Political Party From 1947 to 2015"
+  ) +
+  theme(legend.position = "bottom")
 ```
