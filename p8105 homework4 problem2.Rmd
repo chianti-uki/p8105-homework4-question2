@@ -36,7 +36,6 @@ pols_gdp = merge(pols_month_data, gdp_data, by.x = "mon", by.y = "date")
 ```{r load tidy 538, fig.width= 10, fig.height= 5, warning = F, message = F}
 
 library(ggplot2)
-library(stringr)
 
 pols_gdp %>%
   mutate(

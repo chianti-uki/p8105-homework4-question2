@@ -137,7 +137,6 @@ gdp_data = read_csv(&quot;../p8105-homework4-question2/fivethirtyeight_datasets/
 
 pols_gdp = merge(pols_month_data, gdp_data, by.x = &quot;mon&quot;, by.y = &quot;date&quot;) </code></pre>
 <pre class="r"><code>library(ggplot2)
-library(stringr)
 
 pols_gdp %&gt;%
   mutate(
