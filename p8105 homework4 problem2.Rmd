@@ -1,6 +1,6 @@
 ---
 title: "p8105-homework4-question2"
-author: "chianti shi"
+author: "Xiangyu (chianti) Shi，Yulan Zhang"
 date: "10/29/2017"
 output: html_document
 ---
@@ -41,12 +41,13 @@ library(stringr)
 pols_gdp %>%
   mutate(
     president = recode(prez_dem, "0" = "Republican", "1" = "Democratic"),
-    gdp = as.numeric(value),
-    date = str_sub(mon, 1, -7)
+    gdp = as.numeric(value) 
+    #date = str_sub(mon, 1, -7)
     ) %>%
-  ggplot(aes(x = date, y = gdp, color = president)) +
+  ggplot(aes(x = mon, y = gdp, color = president)) +
   geom_point() +
-  scale_x_discrete(breaks = seq(1948, 2015, 4)) +
+  geom_smooth() +
+  scale_x_date(date_breaks = "8 years") +
   scale_y_continuous() +
   labs(
     title = "GDP From 1947 to 2015",
@@ -56,3 +57,11 @@ pols_gdp %>%
   ) +
   theme(legend.position = "bottom")
 ```
+
+Comments:
+
+* The above plot shows the distribution of GDP value overtime from 1947 to 2015 for different political party. The value of GDP is measured every quarter of each fiscal year. 
+
+* As shown in both scatter plot and the smooth curve, the GDP relative to year 1947, was relatively unstable before 1960. After 1960, the GDP peaks around 1979 then drops to trough around 2008.
+
+* On average, Democratic is doing better at maintaining GDP, since its smooth curve is above that of Republican before 2000. After 2000, Republican are doing better, where the two smooth curve intersects.
