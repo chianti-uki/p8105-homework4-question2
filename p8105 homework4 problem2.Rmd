@@ -22,11 +22,11 @@ In Problems 1 and 2, I worked with Yulan Zhang (UNI: yz3306).
 
 combine pol and gdp dataset
 ```{r problem 2 data, warning=FALSE, message = F}
-pols_month_data = read_csv("../p8105-homework4-question2/fivethirtyeight_datasets/pols-month.csv") %>%
+pols_month_data = read_csv("./data/fivethirtyeight_datasets/pols-month.csv") %>%
   clean_names() %>%
   mutate(mon = lubridate::floor_date((mon), unit = "month"))
 
-gdp_data = read_csv("../p8105-homework4-question2/fivethirtyeight_datasets/gdp.csv") %>%
+gdp_data = read_csv("./data/fivethirtyeight_datasets/gdp.csv") %>%
   clean_names() 
 
 pols_gdp = merge(pols_month_data, gdp_data, by.x = "mon", by.y = "date") 

@@ -128,11 +128,11 @@ $(document).ready(function () {
 <div id="problem-2" class="section level3">
 <h3>Problem 2</h3>
 <p>combine pol and gdp dataset</p>
-<pre class="r"><code>pols_month_data = read_csv(&quot;../p8105-homework4-question2/fivethirtyeight_datasets/pols-month.csv&quot;) %&gt;%
+<pre class="r"><code>pols_month_data = read_csv(&quot;./data/fivethirtyeight_datasets/pols-month.csv&quot;) %&gt;%
   clean_names() %&gt;%
   mutate(mon = lubridate::floor_date((mon), unit = &quot;month&quot;))
 
-gdp_data = read_csv(&quot;../p8105-homework4-question2/fivethirtyeight_datasets/gdp.csv&quot;) %&gt;%
+gdp_data = read_csv(&quot;./data/fivethirtyeight_datasets/gdp.csv&quot;) %&gt;%
   clean_names() 
 
 pols_gdp = merge(pols_month_data, gdp_data, by.x = &quot;mon&quot;, by.y = &quot;date&quot;) </code></pre>
